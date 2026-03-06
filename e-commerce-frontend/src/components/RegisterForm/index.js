@@ -107,37 +107,46 @@ initialState=()=>{
   })
 }
 
-onFormSubmit=async (event)=>{
+onFormSubmit = async (event) => {
   event.preventDefault();
-  const isValid=this.validate();
-  const {firstName,lastName,username,newPassword}=this.state 
-  if(isValid){
-    const userDetails={firstName,lastName,username,password:newPassword}
-    // const URL='http://localhost:5000/auth/register'; 
-    const URL='https://e-commerce-app-production-df04.up.railway.app/auth/register'
-    const options={
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Accept':'application/json',
-      },
-      body:JSON.stringify(userDetails) 
-    }
-    const response=await fetch(URL,options); 
-    const data=await response.json(); 
-    if(response.ok===true){
-      this.initialState();
-      const {history}=this.props; 
-      history.push('/registration-success')
-    }
-    else{
-      this.initialState();
-      this.setState({errorMsg:data.error_msg,showSubmitError:true}); 
-    }
-    
-  } 
-}
+  const isValid = this.validate();
+  const { firstName, lastName, username, newPassword } = this.state;
 
+  if (isValid) {
+    const userDetails = { firstName, lastName, username, password: newPassword };
+    // const URL='http://localhost:5000/auth/register'; 
+    const URL = 'https://e-commerce-app-production-df04.up.railway.app/auth/register';
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(userDetails),
+    };
+
+    try {
+      const response = await fetch(URL, options);
+      const data = await response.json();
+
+      if (response.ok === true) {
+        this.initialState();
+        const { history } = this.props;
+        history.push('/registration-success');
+      } else {
+        this.initialState();
+        this.setState({ errorMsg: data.error_msg, showSubmitError: true });
+      }
+
+    } catch (error) {
+      this.setState({
+        showSubmitError: true,
+        errorMsg: "Server is starting... please try again in a moment",
+      });
+    }
+  }
+};
 
 
    renderFirstNameField=()=>{

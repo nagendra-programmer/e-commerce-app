@@ -70,13 +70,20 @@ class LoginForm extends Component {
         },
         body: JSON.stringify(userDetails),
       }
-      const response = await fetch(url, options)
-      const data = await response.json()
+      try {
+        const response = await fetch(url, options)
+        const data = await response.json()
 
-      if (response.ok === true) {
-        this.onSubmitSuccess(data.jwt_token)
-      } else {
-        this.onSubmitFailure(data.error_msg)
+        if (response.ok) {
+          this.onSubmitSuccess(data.jwt_token)
+        } else {
+          this.onSubmitFailure(data.error_msg)
+        }
+      } catch (error) {
+          this.setState({
+            showSubmitError: true,
+            errorMsg: "Server is starting... please try again in a moment",
+          })
       }
     }
     

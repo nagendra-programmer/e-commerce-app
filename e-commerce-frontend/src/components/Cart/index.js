@@ -22,12 +22,13 @@ class Cart extends Component {
 
     try {
       const response = await fetch(
-  'https://e-commerce-app-production-df04.up.railway.app/api/cart',
-  {
-    headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      })
+        'https://e-commerce-app-production-df04.up.railway.app/api/cart',
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        }
+      )
 
       const data = await response.json()
 
@@ -58,14 +59,21 @@ class Cart extends Component {
   updateQuantity = async (itemId, quantity) => {
     const jwtToken = Cookies.get('jwt_token')
 
-    await fetch(`https://e-commerce-app-production-df04.up.railway.app/api/cart/${itemId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      body: JSON.stringify({ quantity }),
-    })
+    try {
+      await fetch(
+        `https://e-commerce-app-production-df04.up.railway.app/api/cart/${itemId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${jwtToken}`,
+          },
+          body: JSON.stringify({ quantity }),
+        }
+      )
+    } catch (error) {
+      console.error(error)
+    }
 
     this.getCart()
   }
@@ -73,12 +81,19 @@ class Cart extends Component {
   deleteItem = async itemId => {
     const jwtToken = Cookies.get('jwt_token')
 
-    await fetch(`https://e-commerce-app-production-df04.up.railway.app/api/cart/${itemId}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    })
+    try {
+      await fetch(
+        `https://e-commerce-app-production-df04.up.railway.app/api/cart/${itemId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        }
+      )
+    } catch (error) {
+      console.error(error)
+    }
 
     this.getCart()
   }
@@ -86,12 +101,19 @@ class Cart extends Component {
   clearCart = async () => {
     const jwtToken = Cookies.get('jwt_token')
 
-    await fetch('https://e-commerce-app-production-df04.up.railway.app/api/cart', {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    })
+    try {
+      await fetch(
+        'https://e-commerce-app-production-df04.up.railway.app/api/cart',
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        }
+      )
+    } catch (error) {
+      console.error(error)
+    }
 
     this.getCart()
   }
@@ -108,58 +130,57 @@ class Cart extends Component {
       )
     }
 
-   return (
-  <>
-    <div className="cart-page">
-      <Header />
+    return (
+      <>
+        <div className="cart-page">
+          <Header />
 
-      <div className="cart-container">
-        <div className="cart-content-container">
+          <div className="cart-container">
+            <div className="cart-content-container">
 
-          <div className="cart-top-bar">
-            <h1 className="cart-heading">My Cart</h1>
-            {items.length > 0 && (
-              <button
-                onClick={this.clearCart}
-                className="clear-cart-btn"
-              >
-                Clear Cart
-              </button>
-            )}
+              <div className="cart-top-bar">
+                <h1 className="cart-heading">My Cart</h1>
+                {items.length > 0 && (
+                  <button
+                    onClick={this.clearCart}
+                    className="clear-cart-btn"
+                  >
+                    Clear Cart
+                  </button>
+                )}
+              </div>
+
+              {items.length === 0 ? (
+                <EmptyCartView />
+              ) : (
+                <div className="cart-body">
+                  <CartListView
+                    items={items}
+                    updateQuantity={this.updateQuantity}
+                    deleteItem={this.deleteItem}
+                  />
+                </div>
+              )}
+
+            </div>
           </div>
 
-          {items.length === 0 ? (
-            <EmptyCartView />
-          ) : (
-            <div className="cart-body">
-              <CartListView
-                items={items}
-                updateQuantity={this.updateQuantity}
-                deleteItem={this.deleteItem}
-              />
+          {items.length > 0 && (
+            <div className="cart-footer">
+              <div className="cart-summary">
+                <p className="summary-text">
+                  Total Items: {totalItems}
+                </p>
+
+                <p className="summary-total">
+                  Grand Total: Rs {grandTotal.toFixed(2)}/-
+                </p>
+              </div>
             </div>
           )}
-
         </div>
-      </div>
-
-      
-      {items.length > 0 && (
-        <div className="cart-footer">
-          <div className="cart-summary">
-            <p className="summary-text">
-              Total Items: {totalItems}
-            </p>
-
-            <p className="summary-total">
-              Grand Total: Rs {grandTotal.toFixed(2)}/-
-            </p>
-          </div>
-        </div>
-      )}
-    </div>
-  </>
-)
+      </>
+    )
   }
 }
 

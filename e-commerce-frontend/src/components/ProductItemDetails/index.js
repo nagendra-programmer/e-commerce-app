@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
+import {ThreeDots} from 'react-loader-spinner'
 import { BsPlusSquare, BsDashSquare } from 'react-icons/bs'
 
 import Header from '../Header'
@@ -43,14 +43,15 @@ class ProductItemDetails extends Component {
     totalReviews: data.total_reviews,
   })
 
-  getProductData = async () => {
-    const { match } = this.props
-    const { id } = match.params
+getProductData = async () => {
+  const { match } = this.props
+  const { id } = match.params
 
-    this.setState({ apiStatus: apiStatusConstants.inProgress })
+  this.setState({ apiStatus: apiStatusConstants.inProgress })
 
-    const jwtToken = Cookies.get('jwt_token')
+  const jwtToken = Cookies.get('jwt_token')
 
+  try {
     const response = await fetch(
       `https://e-commerce-app-production-df04.up.railway.app/products/${id}`,
       {
@@ -79,8 +80,10 @@ class ProductItemDetails extends Component {
     } else {
       this.setState({ apiStatus: apiStatusConstants.failure })
     }
+  } catch (error) {
+    this.setState({ apiStatus: apiStatusConstants.failure })
   }
-
+}
    
   startTimer=()=>{
     setTimeout(()=>{
@@ -89,10 +92,11 @@ class ProductItemDetails extends Component {
   }
 
   //BACKEND ADD TO CART FUNCTION
-  addToCart = async () => {
-    const { productData, quantity } = this.state
-    const jwtToken = Cookies.get('jwt_token')
+addToCart = async () => {
+  const { productData, quantity } = this.state
+  const jwtToken = Cookies.get('jwt_token')
 
+  try {
     const response = await fetch(
       'https://e-commerce-app-production-df04.up.railway.app/api/cart',
       {
@@ -107,19 +111,26 @@ class ProductItemDetails extends Component {
         }),
       }
     )
-    const data=await response.json()
-    console.log(response);
-    console.log(data) ; 
+
+    const data = await response.json()
+    console.log(response)
+    console.log(data)
 
     if (response.ok) {
-   
-      this.setState({cartMessage:data.message,showCartMessage:true})
-      
+      this.setState({ cartMessage: data.message, showCartMessage: true })
     } else {
-      this.setState({cartMessage:"Failded to add item",showCartMessage:true})
+      this.setState({ cartMessage: "Failded to add item", showCartMessage: true })
     }
-    this.startTimer()
+
+  } catch (error) {
+    this.setState({
+      cartMessage: "Server is starting... please try again",
+      showCartMessage: true,
+    })
   }
+
+  this.startTimer()
+}
 
   onDecrementQuantity = () => {
     const { quantity } = this.state
@@ -132,9 +143,14 @@ class ProductItemDetails extends Component {
     this.setState(prev => ({ quantity: prev.quantity + 1 }))
   }
 
-  renderLoadingView = () => (
+ renderLoadingView = () => (
     <div className="products-details-loader-container">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+      <ThreeDots
+        height="50"
+        width="50"
+        color="#0b69ff"
+        visible={true}
+      />
     </div>
   )
 
@@ -288,3 +304,4 @@ class ProductItemDetails extends Component {
 }
 
 export default ProductItemDetails
+

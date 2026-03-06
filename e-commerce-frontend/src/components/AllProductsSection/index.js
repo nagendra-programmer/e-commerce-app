@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import Loader from 'react-loader-spinner'
+import {ThreeDots} from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
 import FiltersGroup from '../FiltersGroup'
@@ -86,26 +86,34 @@ class AllProductsSection extends Component {
     this.getProducts()
   }
 
-  getProducts = async () => {
-    this.setState({
-      apiStatus: apiStatusConstants.inProgress,
-    })
-    const jwtToken = Cookies.get('jwt_token')
-    console.log(jwtToken); 
-    const {activeOptionId, activeCategoryId, searchInput, activeRatingId} =
-      this.state
-    // const apiUrl = `http://localhost:5000/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
-    const apiUrl = `https://e-commerce-app-production-df04.up.railway.app/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
-    const options = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      method: 'GET',
-    }
+getProducts = async () => {
+  this.setState({
+    apiStatus: apiStatusConstants.inProgress,
+  })
+
+  const jwtToken = Cookies.get('jwt_token')
+  console.log(jwtToken)
+
+  const {activeOptionId, activeCategoryId, searchInput, activeRatingId} =
+    this.state
+
+  // const apiUrl = `http://localhost:5000/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
+
+  const apiUrl = `https://e-commerce-app-production-df04.up.railway.app/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
+
+  const options = {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+    method: 'GET',
+  }
+
+  try {
     const response = await fetch(apiUrl, options)
+
     if (response.ok) {
       const fetchedData = await response.json()
-      
+
       const updatedData = fetchedData.products.map(product => ({
         title: product.title,
         brand: product.brand,
@@ -114,6 +122,7 @@ class AllProductsSection extends Component {
         imageUrl: product.image_url,
         rating: product.rating,
       }))
+
       this.setState({
         productsList: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -123,11 +132,22 @@ class AllProductsSection extends Component {
         apiStatus: apiStatusConstants.failure,
       })
     }
-  }
 
-  renderLoadingView = () => (
+  } catch (error) {
+    this.setState({
+      apiStatus: apiStatusConstants.failure,
+    })
+  }
+}
+
+ renderLoadingView = () => (
     <div className="products-loader-container">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+      <ThreeDots
+        height="50"
+        width="50"
+        color="#0b69ff"
+        visible={true}
+      />
     </div>
   )
 
@@ -226,7 +246,7 @@ class AllProductsSection extends Component {
   }
 
   render() {
-    const {activeCategoryId, searchInput, activeRatingId} = this.state
+  const {activeCategoryId, searchInput, activeRatingId} = this.state
 
     return (
       <div className="all-products-section">
@@ -242,7 +262,8 @@ class AllProductsSection extends Component {
           changeRating={this.changeRating}
           clearFilters={this.clearFilters}
         />
-        {this.renderAllProducts()}
+        
+          {this.renderAllProducts()}
       </div>
     )
   }

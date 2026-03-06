@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
+import {ThreeDots} from 'react-loader-spinner'
 
 import ProductCard from '../ProductCard'
 import './index.css'
@@ -22,24 +22,29 @@ class PrimeDealsSection extends Component {
     this.getPrimeDeals()
   }
 
-  getPrimeDeals = async () => {
-    this.setState({
-      apiStatus: apiStatusConstants.inProgress,
-    })
+getPrimeDeals = async () => {
+  this.setState({
+    apiStatus: apiStatusConstants.inProgress,
+  })
 
-    const jwtToken = Cookies.get('jwt_token')
+  const jwtToken = Cookies.get('jwt_token')
 
-    // const apiUrl = 'http://localhost:5000/prime-deals'
-    const apiUrl = 'https://e-commerce-app-production-df04.up.railway.app/prime-deals'
-    const options = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      method: 'GET',
-    }
+  // const apiUrl = 'http://localhost:5000/prime-deals'
+  const apiUrl = 'https://e-commerce-app-production-df04.up.railway.app/prime-deals'
+
+  const options = {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+    method: 'GET',
+  }
+
+  try {
     const response = await fetch(apiUrl, options)
-    if (response.ok === true) {
+
+    if (response.ok) {
       const fetchedData = await response.json()
+
       const updatedData = fetchedData.prime_deals.map(product => ({
         title: product.title,
         brand: product.brand,
@@ -48,17 +53,22 @@ class PrimeDealsSection extends Component {
         imageUrl: product.image_url,
         rating: product.rating,
       }))
+
       this.setState({
         primeDeals: updatedData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 401) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
     }
+  } catch (error) {
+    this.setState({
+      apiStatus: apiStatusConstants.failure,
+    })
   }
+}
 
   renderPrimeDealsList = () => {
     const {primeDeals} = this.state
@@ -85,7 +95,12 @@ class PrimeDealsSection extends Component {
 
   renderLoadingView = () => (
     <div className="primedeals-loader-container">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+      <ThreeDots
+      height="50"
+      width="50"
+      color="#0b69ff"
+      visible={true}
+    />
     </div>
   )
 
