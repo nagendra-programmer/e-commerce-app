@@ -1,0 +1,161 @@
+/* Main Header */
+.nav-header {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to right, #f0fdf4, #ccfbf1);
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Content wrapper */
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+  max-width: 1200px;
+  padding: 18px 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #065f46;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #047857;
+}
+
+@media screen and (max-width: 767px) {
+  .nav-content {
+    flex-direction: column;
+  }
+}
+
+/* Mobile Logo + Logout */
+.nav-bar-mobile-logo-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-bar-mobile-logo-container {
+    display: none;
+  }
+}
+
+/* Desktop Layout */
+.nav-bar-large-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .nav-bar-large-container {
+    display: none;
+  }
+}
+
+/* Logo */
+.website-logo {
+  width: 130px;
+}
+
+@media screen and (min-width: 768px) {
+  .website-logo {
+    width: 170px;
+  }
+}
+
+/* Desktop Menu */
+.nav-menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .nav-menu {
+    display: none;
+  }
+}
+
+.nav-menu-item {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Links */
+.nav-link {
+  text-decoration: none;
+  color: #1e293b;
+}
+
+/* Hover effect */
+.nav-link:hover {
+  color: #2563eb;
+}
+
+/* Logout button */
+.logout-desktop-btn {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 18px;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-desktop-btn:hover {
+  background-color: #1d4ed8;
+}
+
+@media screen and (max-width: 767px) {
+  .logout-desktop-btn {
+    display: none;
+  }
+}
+
+/* Mobile Bottom Nav */
+.nav-menu-mobile {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-menu-mobile {
+    display: none;
+  }
+}
+
+.nav-menu-list-mobile {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  background-color: #f1f5f9;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu-item-mobile {
+  cursor: pointer;
+}
+
+.nav-bar-img {
+  width: 24px;
+}
+
+/* Mobile Logout Button */
+.nav-mobile-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

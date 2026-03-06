@@ -1,0 +1,183 @@
+🧠 What Actually Happens Internally?
+
+Suppose request comes:
+
+GET /products
+
+Express checks in order:
+
+Does it match app.use('/', productRoutes)?
+
+YES, because /products starts with /
+
+So it forwards request to productRoutes router.
+
+Inside productRoutes, Express checks:
+
+router.get('/products', ...)
+
+It matches.
+
+It runs the controller.
+
+
+
+
+When using:
+
+app.use('/auth', authRoutes)
+
+Express strips /auth before sending request to router.
+
+So inside router, you only write:
+
+router.post('/login')
+
+Not /auth/login.
+
+
+
+
+What Is The General Functionality of app.use()?
+
+The real meaning of app.use() is:
+
+“When a request comes, run this function.”
+
+Example 1
+app.use((req, res, next) => {
+  console.log("STEP 1")
+  next()
+})
+
+app.use((req, res, next) => {
+  console.log("STEP 2")
+  next()
+})
+
+app.get('/hello', (req, res) => {
+  res.send("DONE")
+})
+
+
+So What Does next() Call?
+
+It calls:
+
+The next function in the middleware stack.
+
+
+
+ 
+What Are The Parameters of app.use()?
+
+app.use() can take:
+
+app.use(middleware) // runs the middleware for every incoming request regardless of path 
+app.use(path, middleware) // Runs this middleware only if the request path begins with the given prefix.
+app.use(path, router) // forward request to the router if the path matches 
+
+
+Why Do We Use app.use() Instead of app.get()?
+
+Because:
+
+app.get() handles a specific route
+
+app.use() attaches middleware or router to many routes
+
+
+express.Router() helps us:
+
+Separate features
+Keep server.js clean
+Scale easily
+
+
+const result = await db.query("SELECT * FROM products")
+console.log(result)
+
+Will print something like:
+
+[
+  [
+    { id: 1, name: "Shirt" },
+    { id: 2, name: "Shoes" }
+  ],
+  [
+    { name: 'id', type: 3, ... },
+    { name: 'name', type: 253, ... }
+  ]
+]
+
+const [rows] = await db.query(...)
+This is array destructuring.
+It means: const rows = result[0]
+
+
+
+
+Why dotenv Is Needed
+
+Right now you created this file:
+
+.env
+
+Inside it you stored:
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=nagendra@developer
+DB_NAME=e_commerce_db
+PORT=5000
+JWT_SECRET=mysecretkey
+
+But Node.js cannot read .env automatically.
+
+Node only understands variables like:
+
+process.env.DB_HOST
+
+So we need something that loads the .env file into process.env.
+
+That tool is:
+
+dotenv
+What dotenv Does
+
+When your server starts, dotenv will read .env and convert it to:
+
+process.env.DB_HOST
+process.env.DB_USER
+process.env.DB_PASSWORD
+process.env.DB_NAME
+
+So your code can safely use them.
+
+Without dotenv
+
+Your code:
+
+host: process.env.DB_HOST
+
+would return:
+
+undefined
+
+because Node doesn't know where DB_HOST is stored.
+
+npm install dotenv
+
+This installs the package that allows Node.js to read the .env file.
+
+Why We Do This
+
+Because you added this line:
+
+require("dotenv").config()
+
+This tells Node:
+
+“Load environment variables from .env into process.env.”
+
+But this only works if the dotenv package is installed.
