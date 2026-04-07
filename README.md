@@ -24,6 +24,17 @@ https://e-commerce-app-production-df04.up.railway.app
 
 ---
 
+# 🧪 Demo Credentials
+
+You can either register a new account or use the demo credentials below:
+
+Username: abc  
+Password: 123456789
+
+---
+
+⚠️ Note: This project is hosted on free services (Railway), so the backend may take 30–60 seconds to respond on the first request due to cold start.
+
 # 📸 Screenshots
 
 ### Registration Page
