@@ -135,7 +135,7 @@ class LoginForm extends Component {
           {/* DEMO CARD */}
           <div className="demo-credentials-card">
             <h3>Demo Credentials</h3>
-            <p>Username: guru</p>
+            <p>Username: abc</p>
             <p>Password: 123456789</p>
             <button
               type="button"
