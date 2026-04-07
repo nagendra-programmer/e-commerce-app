@@ -25,7 +25,7 @@ class LoginForm extends Component {
 
   useDemoCredentials = () => {
     this.setState({
-      username: 'guru',
+      username: 'abc',
       password: '123456789',
       usernameErrMsg: '',
       passwordErrMsg: '',
@@ -121,7 +121,7 @@ class LoginForm extends Component {
 
     return (
       <>
-        {/* ✅ HEADER ONLY LOGO */}
+      
         <nav className="login-header">
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
