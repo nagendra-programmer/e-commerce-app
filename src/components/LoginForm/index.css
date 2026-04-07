@@ -7,6 +7,7 @@
   width: 90%;
   max-width: 1110px;
   margin: auto;
+  gap: 20px;
 }
 
 @media screen and (min-width: 992px) {
@@ -15,6 +16,7 @@
     justify-content: space-around;
   }
 }
+
 
 .login-website-logo-mobile-img {
   width: 165px;
@@ -27,6 +29,7 @@
     display: none;
   }
 }
+
 
 .login-img {
   width: 278px;
@@ -41,6 +44,7 @@
   }
 }
 
+
 .login-website-logo-desktop-img {
   width: 185px;
 }
@@ -50,6 +54,7 @@
     display: none;
   }
 }
+
 
 .form-container {
   display: flex;
@@ -69,6 +74,7 @@
     padding: 64px 48px 64px 48px;
   }
 }
+
 
 .input-container {
   display: flex;
@@ -110,6 +116,7 @@
   outline: none;
 }
 
+
 .login-button {
   font-family: 'Roboto';
   font-weight: bold;
@@ -126,16 +133,21 @@
   outline: none;
 }
 
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .error-message {
   align-self: start;
   font-size: 12px;
   margin-top: 3px;
   margin-bottom: 0px;
   font-family: 'Roboto';
-  font-size: 12px;
   line-height: 16px;
   color: #ff0b37;
 }
+
 
 .demo-credentials {
   background-color: #f1f5f9;
@@ -143,6 +155,16 @@
   border-radius: 6px;
   margin-bottom: 15px;
   text-align: center;
+}
+
+
+.demo-credentials-card {
+  background-color: #f1f5f9;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
 }
 
 .demo-btn {

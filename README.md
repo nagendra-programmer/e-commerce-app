@@ -28,8 +28,8 @@ https://e-commerce-app-production-df04.up.railway.app
 
 You can either register a new account or use the demo credentials below:
 
-Username: abc  
-Password: 123456789
+- **Username:** abc  
+- **Password:** 123456789
 
 ---
 
