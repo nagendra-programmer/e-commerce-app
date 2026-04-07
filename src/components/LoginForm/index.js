@@ -74,7 +74,7 @@ class LoginForm extends Component {
       const userDetails = {username, password}
 
       const url =
-        'https://careerconnect-backend-gx9j.onrender.com/auth/login'
+        'https://e-commerce-app-production-df04.up.railway.app/auth/login'
 
       try {
         const response = await fetch(url, {
