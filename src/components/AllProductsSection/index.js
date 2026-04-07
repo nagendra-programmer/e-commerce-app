@@ -99,7 +99,7 @@ getProducts = async () => {
 
   // const apiUrl = `http://localhost:5000/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
 
-  const apiUrl = `https://e-commerce-backend-230d.onrender.com/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
+  const apiUrl = `https://e-commerce-app-production-df04.up.railway.app/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
 
   const options = {
     headers: {

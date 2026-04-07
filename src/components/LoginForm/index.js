@@ -60,9 +60,8 @@ class LoginForm extends Component {
     if(isValid){
       this.setState({usernameErrMsg:'',passwordErrMsg:''})
       const userDetails = {username, password}
-      //const url = 'https://apis.ccbp.in/login'
-      // const url='http://localhost:5000/auth/login'
-      const url='https://e-commerce-backend-230d.onrender.com/auth/login'
+      
+      const url='https://e-commerce-app-production-df04.up.railway.app/auth/login'
       const options = {
         method: 'POST',
         headers:{

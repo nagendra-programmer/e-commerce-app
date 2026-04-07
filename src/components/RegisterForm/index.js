@@ -114,8 +114,8 @@ onFormSubmit = async (event) => {
 
   if (isValid) {
     const userDetails = { firstName, lastName, username, password: newPassword };
-    // const URL='http://localhost:5000/auth/register'; 
-    const URL = 'https://e-commerce-backend-230d.onrender.com/auth/register';
+  
+    const URL = 'https://e-commerce-app-production-df04.up.railway.app/auth/register';
 
     const options = {
       method: 'POST',

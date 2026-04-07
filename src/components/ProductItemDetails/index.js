@@ -53,7 +53,7 @@ getProductData = async () => {
 
   try {
     const response = await fetch(
-      `https://e-commerce-backend-230d.onrender.com/products/${id}`,
+      `https://e-commerce-app-production-df04.up.railway.app/products/${id}`,
       {
         method: 'GET',
         headers: {

@@ -29,8 +29,8 @@ getPrimeDeals = async () => {
 
   const jwtToken = Cookies.get('jwt_token')
 
-  // const apiUrl = 'http://localhost:5000/prime-deals'
-  const apiUrl = 'https://e-commerce-backend-230d.onrender.com/prime-deals'
+  
+  const apiUrl = 'https://e-commerce-app-production-df04.up.railway.app/prime-deals'
 
   const options = {
     headers: {

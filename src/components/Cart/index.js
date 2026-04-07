@@ -22,7 +22,7 @@ class Cart extends Component {
 
     try {
       const response = await fetch(
-        'https://e-commerce-backend-230d.onrender.com/api/cart',
+        'https://e-commerce-app-production-df04.up.railway.app/api/cart',
         {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
@@ -61,7 +61,7 @@ class Cart extends Component {
 
     try {
       await fetch(
-        `https://e-commerce-backend-230d.onrender.com/api/cart/${itemId}`,
+        `https://e-commerce-app-production-df04.up.railway.app/api/cart/${itemId}`,
         {
           method: 'PUT',
           headers: {
@@ -83,7 +83,7 @@ class Cart extends Component {
 
     try {
       await fetch(
-        `https://e-commerce-backend-230d.onrender.com/api/cart/${itemId}`,
+        `https://e-commerce-app-production-df04.up.railway.app/api/cart/${itemId}`,
         {
           method: 'DELETE',
           headers: {
@@ -103,7 +103,7 @@ class Cart extends Component {
 
     try {
       await fetch(
-        'https://e-commerce-backend-230d.onrender.com/api/cart',
+        'https://e-commerce-app-production-df04.up.railway.app/api/cart',
         {
           method: 'DELETE',
           headers: {
