@@ -120,56 +120,68 @@ class LoginForm extends Component {
     }
 
     return (
-      <div className="login-form-container">
+      <>
+        {/* ✅ HEADER ONLY LOGO */}
+        <nav className="login-header">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+            alt="website logo"
+            className="login-header-logo"
+          />
+        </nav>
 
-        <div className="demo-credentials-card">
-          <h3>Demo Credentials</h3>
-          <p>Username: guru</p>
-          <p>Password: 123456789</p>
-          <button
-            type="button"
-            className="demo-btn"
-            onClick={this.useDemoCredentials}
-          >
-            Use Demo Login
-          </button>
+        <div className="login-form-container">
+
+          {/* DEMO CARD */}
+          <div className="demo-credentials-card">
+            <h3>Demo Credentials</h3>
+            <p>Username: guru</p>
+            <p>Password: 123456789</p>
+            <button
+              type="button"
+              className="demo-btn"
+              onClick={this.useDemoCredentials}
+            >
+              Use Demo Login
+            </button>
+          </div>
+
+          {/* LOGIN FORM */}
+          <form className="form-container" onSubmit={this.submitForm}>
+            <label className="input-label">USERNAME</label>
+            <input
+              type="text"
+              value={username}
+              onChange={this.onChangeUsername}
+              className="username-input-field"
+            />
+
+            <label className="input-label">PASSWORD</label>
+            <input
+              type="password"
+              value={password}
+              onChange={this.onChangePassword}
+              className="password-input-field"
+            />
+
+            <button type="submit" className="login-button" disabled={isLoading}>
+              {isLoading ? 'Loading...' : 'Login'}
+            </button>
+
+            <button
+              type="button"
+              className="login-button"
+              onClick={this.onRegister}
+            >
+              Register
+            </button>
+
+            {showSubmitError && (
+              <p className="error-message">*{errorMsg}</p>
+            )}
+          </form>
         </div>
-
-        {/* LOGIN FORM */}
-        <form className="form-container" onSubmit={this.submitForm}>
-          <label className="input-label">USERNAME</label>
-          <input
-            type="text"
-            value={username}
-            onChange={this.onChangeUsername}
-            className="username-input-field"
-          />
-
-          <label className="input-label">PASSWORD</label>
-          <input
-            type="password"
-            value={password}
-            onChange={this.onChangePassword}
-            className="password-input-field"
-          />
-
-          <button type="submit" className="login-button" disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'Login'}
-          </button>
-
-          <button
-            type="button"
-            className="login-button"
-            onClick={this.onRegister}
-          >
-            Register
-          </button>
-
-          {showSubmitError && (
-            <p className="error-message">*{errorMsg}</p>
-          )}
-        </form>
-      </div>
+      </>
     )
   }
 }

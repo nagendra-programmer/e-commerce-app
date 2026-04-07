@@ -172,3 +172,18 @@
   padding: 5px 10px;
   cursor: pointer;
 }
+
+/* ✅ HEADER ONLY LOGO */
+.login-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+}
+
+.login-header-logo {
+  width: 150px;
+}
