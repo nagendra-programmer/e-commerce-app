@@ -95,23 +95,25 @@
 .username-input-field {
   font-size: 14px;
   height: 40px;
-  border: 1px solid #d7dfe9;
+  border: 1px solid cyan;
   background-color: #e2e8f0;
   color: #64748b;
   border-radius: 2px;
   margin-top: 5px;
   padding: 8px 16px 8px 16px;
   outline: none;
+  width:80%; 
 }
 
 .password-input-field {
   font-size: 14px;
   height: 40px;
-  border: 1px solid #d7dfe9;
+  border: 1px solid cyan;
   background-color: #e2e8f0;
   color: #64748b;
   border-radius: 2px;
   margin-top: 5px;
+  width:80%; 
   padding: 8px 16px 8px 16px;
   outline: none;
 }
@@ -173,7 +175,7 @@
   cursor: pointer;
 }
 
-/* ✅ HEADER ONLY LOGO */
+
 .login-header {
   width: 100%;
   display: flex;
@@ -181,7 +183,7 @@
   align-items: center;
   padding: 15px 0;
   border-bottom: 1px solid #e2e8f0;
-  background-color: #ffffff;
+  background: linear-gradient(to right, #f0fdf4, #ccfbf1);
 }
 
 .login-header-logo {
