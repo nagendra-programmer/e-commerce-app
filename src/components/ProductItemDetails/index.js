@@ -98,7 +98,7 @@ addToCart = async () => {
 
   try {
     const response = await fetch(
-      'https://e-commerce-backend-230d.onrender.com/api/cart',
+      'https://e-commerce-app-production-df04.up.railway.app/api/cart',
       {
         method: 'POST',
         headers: {
