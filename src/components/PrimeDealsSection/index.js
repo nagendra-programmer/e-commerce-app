@@ -15,12 +15,12 @@ const apiStatusConstants = {
 class PrimeDealsSection extends Component {
   state = {
     primeDeals: [],
-    apiStatus: apiStatusConstants.initial,
+    apiStatus: apiStatusConstants.failure,
   }
 
-  componentDidMount() {
-    this.getPrimeDeals()
-  }
+  // componentDidMount() {
+  //   this.getPrimeDeals()
+  // }
 
 getPrimeDeals = async () => {
   this.setState({

@@ -9,7 +9,6 @@
   overflow-y: auto;  
   display: flex;
   flex-direction: column;
-  margin: auto;
   width: 100%;
-  max-width: 1110px;
+  
 }
