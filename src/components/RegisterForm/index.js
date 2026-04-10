@@ -260,7 +260,7 @@ onFormSubmit = async (event) => {
   render() {
     const {errorMsg,showSubmitError,passwordMatchErrMsg}=this.state 
     return (
-      <div className="login-form-container">
+      <div className="register-form-container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
           className="login-website-logo-mobile-img"
@@ -271,7 +271,7 @@ onFormSubmit = async (event) => {
           className="login-img"
           alt="website login"
         />
-        <form className="form-container" onSubmit={this.onFormSubmit} >
+        <form className="register-form" onSubmit={this.onFormSubmit} >
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
             className="login-website-logo-desktop-img"
@@ -283,7 +283,7 @@ onFormSubmit = async (event) => {
           <div className="input-container">{this.renderNewPasswordField()}</div>
           <div className="input-container">{this.renderConfirmPasswordField()}</div>
           {passwordMatchErrMsg && <p className="error-message">{passwordMatchErrMsg}</p>}
-          <button type="submit" className="login-button">
+          <button type="submit" className="register-button">
             Register
           </button>
           {showSubmitError && <p className="error-message">*{errorMsg}</p>}

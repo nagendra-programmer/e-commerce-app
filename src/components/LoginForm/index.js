@@ -119,8 +119,8 @@ class LoginForm extends Component {
       return <Redirect to="/" />
     }
 
-    return (
-      <>
+     return (
+      <div className="login-form-bg-contianer">
       
         <nav className="login-header">
           <img
@@ -148,7 +148,7 @@ class LoginForm extends Component {
 
           {/* LOGIN FORM */}
           <form className="form-container" onSubmit={this.submitForm}>
-            <label className="input-label">USERNAME</label>
+            <label className="login-input-label">USERNAME</label>
             <input
               type="text"
               value={username}
@@ -156,7 +156,11 @@ class LoginForm extends Component {
               className="username-input-field"
             />
 
-            <label className="input-label">PASSWORD</label>
+            {this.state.usernameErrMsg && (
+              <p className="error-message">{this.state.usernameErrMsg}</p>
+            )}
+
+            <label className="login-input-label">PASSWORD</label>
             <input
               type="password"
               value={password}
@@ -164,13 +168,17 @@ class LoginForm extends Component {
               className="password-input-field"
             />
 
-            <button type="submit" className="login-button" disabled={isLoading}>
+            {this.state.passwordErrMsg && (
+              <p className="error-message">{this.state.passwordErrMsg}</p>
+            )}
+
+            <button type="submit" className="login-submit-button" disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Login'}
             </button>
 
             <button
               type="button"
-              className="login-button"
+              className="login-submit-button"
               onClick={this.onRegister}
             >
               Register
@@ -181,7 +189,7 @@ class LoginForm extends Component {
             )}
           </form>
         </div>
-      </>
+      </div>
     )
   }
 }
