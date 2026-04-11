@@ -1,5 +1,10 @@
 import { Component } from 'react'
 import Cookies from 'js-cookie'
+
+import Popup from 'reactjs-popup'
+import 'reactjs-popup/dist/index.css'
+import { ThreeDots } from 'react-loader-spinner'
+
 import Header from '../Header'
 import CartListView from '../CartListView'
 import EmptyCartView from '../EmptyCartView'
@@ -125,7 +130,14 @@ class Cart extends Component {
       return (
         <>
           <Header />
-          <p className="loading-text">Loading...</p>
+          <div className="cart-loader-container">
+            <ThreeDots
+              height="50"
+              width="50"
+              color="#0b69ff"
+              visible={true}
+            />
+          </div>
         </>
       )
     }
@@ -141,12 +153,41 @@ class Cart extends Component {
               <div className="cart-top-bar">
                 <h1 className="cart-heading">My Cart</h1>
                 {items.length > 0 && (
-                  <button
-                    onClick={this.clearCart}
-                    className="clear-cart-btn"
-                  >
+                  <Popup
+                trigger={
+                  <button className="clear-cart-btn">
                     Clear Cart
                   </button>
+                }
+                modal
+                position="center center"
+                overlayStyle={{ backdropFilter: "blur(6px)" }}
+              >
+                {close => (
+                  <div className="popup-container">
+                    <p>Are you sure you want to clear the cart?</p>
+
+                    <div className="popup-buttons">
+                      <button
+                        onClick={() => close()}
+                        className="cancel-btn"
+                      >
+                        No
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          this.clearCart()
+                          close()
+                        }}
+                        className="confirm-btn"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </Popup>
                 )}
               </div>
 
