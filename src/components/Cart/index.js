@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Cookies from 'js-cookie'
 
 import Popup from 'reactjs-popup'
-import 'reactjs-popup/dist/index.css'
+
 import { ThreeDots } from 'react-loader-spinner'
 
 import Header from '../Header'
