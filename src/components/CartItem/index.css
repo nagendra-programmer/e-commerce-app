@@ -73,6 +73,11 @@
     align-items: flex-start;
   }
 
+  .cart-details {
+    margin-left: 0;   
+    margin-top: 10px;
+  }
+
   .price-delete-section {
     margin-top: 10px;
     align-self: flex-end;

@@ -5,6 +5,7 @@
   justify-content: center;
   background: linear-gradient(to right, #f0fdf4, #ccfbf1);
   border-bottom: 2px solid #e2e8f0;
+  
 }
 
 /* Content wrapper */
@@ -161,6 +162,4 @@
   background: transparent;
   cursor: pointer;
 }
-
-
 
