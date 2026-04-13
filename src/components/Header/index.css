@@ -1,3 +1,4 @@
+
 /* Main Header */
 .nav-header {
   display: flex;
@@ -16,18 +17,16 @@
   padding: 18px 0;
 }
 
-/* Links */
 .nav-link {
   text-decoration: none;
-  color: #1e293b;
+  color: #065f46;
   font-weight: 500;
 }
 
 .nav-link:hover {
-  color: #2563eb;
+  color: #047857;
 }
 
-/* Mobile layout */
 @media screen and (max-width: 767px) {
   .nav-content {
     flex-direction: column;
@@ -38,9 +37,7 @@
 .nav-bar-mobile-logo-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;   /* ✅ FIX */
   width: 100%;
-  padding: 10px 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -94,6 +91,17 @@
   font-weight: 500;
 }
 
+/* Links */
+.nav-link {
+  text-decoration: none;
+  color: #1e293b;
+}
+
+/* Hover effect */
+.nav-link:hover {
+  color: #2563eb;
+}
+
 /* Logout button */
 .logout-desktop-btn {
   font-weight: 600;
@@ -116,11 +124,10 @@
   }
 }
 
-/* 🔥 Mobile Bottom Nav */
+/* Mobile Bottom Nav */
 .nav-menu-mobile {
   width: 100%;
-  background-color: #e0f2fe;   /* ✅ FIX */
-  border-top: 1px solid #cbd5e1;
+  background-color:transparent;
 }
 
 @media screen and (min-width: 768px) {
@@ -134,11 +141,10 @@
   justify-content: space-around;
   align-items: center;
   height: 60px;
-  background-color: #f8fafc;   /* ✅ improved */
+  background-color: #f1f5f9;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid #e2e8f0;
 }
 
 .nav-menu-item-mobile {
@@ -154,5 +160,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 5px;   /* ✅ better touch area */
 }
+
+
+
