@@ -164,3 +164,22 @@
     width: 70%;
   }
 }
+
+.retry-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #5bcd8b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.retry-button:hover{
+   background-color: #279655;
+}
+.retry-button-container{
+  display:flex;
+  justify-content:center;
+  
+}

@@ -140,6 +140,10 @@ getProducts = async () => {
   }
 }
 
+onRetry=()=>{
+  this.getProducts(); 
+}
+
  renderLoadingView = () => (
     <div className="products-loader-container">
       <ThreeDots
@@ -164,6 +168,10 @@ getProducts = async () => {
       <p className="products-failure-description">
         We are having some trouble processing your request. Please try again.
       </p>
+      <div className="retry-button-container">
+        <button className="retry-button">Retry</button>
+      </div>
+      
     </div>
   )
 
