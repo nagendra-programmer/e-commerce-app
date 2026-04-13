@@ -169,7 +169,7 @@ onRetry=()=>{
         We are having some trouble processing your request. Please try again.
       </p>
       <div className="retry-button-container">
-        <button className="retry-button">Retry</button>
+        <button className="retry-button" onClick={this.onRetry}>Retry</button>
       </div>
       
     </div>
